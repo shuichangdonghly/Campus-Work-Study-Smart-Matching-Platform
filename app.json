@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/profile/edit",
+    "pages/register/role",
+    "pages/register/student",
+    "pages/register/publisher",
+    "pages/student/jobs",
+    "pages/student/recommend/recommend",
+    "pages/student/contact",
+    "pages/student/job-detail",
+    "pages/student/mine",
+    "pages/student/orders",
+    "pages/publisher/create",
+    "pages/publisher/jobs",
+    "pages/publisher/contact",
+    "pages/publisher/mine",
+    "pages/publisher/job-detail",
+    "pages/work/submit",
+    "pages/wallet/index",
+    "pages/wallet/recharge",
+    "pages/wallet/withdraw",
+    "pages/admin/audit",
+    "pages/admin/users",
+    "pages/admin/pending-jobs",
+    "pages/admin/orders",
+    "pages/admin/order-detail",
+    "pages/admin/disputes",
+    "pages/admin/mine",
+    "pages/chat/detail",
+    "pages/location-picker/location-picker"
+    
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的精确位置信息将用于地点推荐与相关功能展示"
+    }
+
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

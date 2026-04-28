@@ -1,0 +1,35 @@
+<view class="page" wx:if="{{job}}">
+  <view class="card">
+    <text class="title">{{job.title}}</text>
+    <text class="row">类型：{{job.category || '—'}}</text>
+    <text class="row">地点：{{job.location}}</text>
+    <text class="row">时间：{{job.timeDesc}}</text>
+    <text class="row">工分/人：{{job.rewardPoints}}（整数）</text>
+    <text class="row">人数：{{job.needCount}} · 已确认完工 {{job.filledCount || 0}}</text>
+    <text class="block">说明：{{job.description}}</text>
+    <text class="row" wx:if="{{job.contact}}">联系：{{job.contact}}</text>
+    <text class="row">接单押金：{{studentDeposit}} 工分（完工后返还）</text>
+  </view>
+  <view class="card" wx:if="{{mapMarkers.length}}">
+    <text class="title map-title">地点地图</text>
+    <map
+      class="detail-map"
+      longitude="{{mapCenterLng}}"
+      latitude="{{mapCenterLat}}"
+      scale="15"
+      markers="{{mapMarkers}}"
+      show-location="{{hasLocationAuth}}"
+    />
+    <text class="map-tip">红点：兼职地点；蓝点：{{hasLocationAuth ? '我的位置' : '默认位置（华中农业大学）'}}</text>
+  </view>
+  <text class="row">{{applyTip}}</text>
+  <button
+    type="primary"
+    bindtap="apply"
+    disabled="{{applied || !canApply}}"
+    class="{{applied ? 'btn-applied' : ''}}"
+  >
+    {{applied ? '已报名' : (canApply ? '报名' : '认证后可报名')}}
+  </button>
+  <button bindtap="contactPublisher">联系发布者</button>
+</view>

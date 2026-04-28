@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">发布者工作台</text>
+    <text class="sub">管理你发布的兼职岗位与录用进度</text>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="_id" class="card" bindtap="open" data-id="{{item._id}}">
+    <view class="card-head">
+      <text class="title">{{item.title}}</text>
+      <text class="status status-{{item.status}}">{{item.statusText}}</text>
+    </view>
+    <text class="row">{{item.categoryText}} · {{item.location}}</text>
+    <text class="row">时间：{{item.timeDesc}}</text>
+    <text class="row">工分/人：{{item.rewardPoints}} · 需{{item.needCount}}人 · 已完成{{item.filledCount || 0}}人</text>
+    <text class="row reject" wx:if="{{item.status === 'rejected' && item.rejectReason}}">驳回原因：{{item.rejectReason}}</text>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty">暂无已发布岗位，点击右下角 + 开始发布</view>
+
+  <view class="fab {{user && user.verifyStatus === 'approved' ? '' : 'fab-disabled'}}" bindtap="goCreate">+</view>
+
+  <view class="publisher-tabbar">
+    <view class="tab active" bindtap="goPublish">发布</view>
+    <view class="tab" bindtap="goContact">联系</view>
+    <view class="tab" bindtap="goMine">我的信息</view>
+  </view>
+</view>

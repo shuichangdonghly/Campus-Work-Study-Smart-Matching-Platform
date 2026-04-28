@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">管理员工作台</text>
+    <text class="sub">审核用户认证资料</text>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="applyKey" class="card">
+    <text class="row">{{item.displayName}} · 申请身份：{{item.applyRoleLabel}}</text>
+    <text class="small">openid: {{item.openid}}</text>
+    <view class="detail-box" wx:if="{{item.details && item.details.length}}">
+      <view wx:for="{{item.details}}" wx:key="label" class="detail-row">
+        <text class="detail-label">{{item.label}}：</text>
+        <text class="detail-value">{{item.value}}</text>
+      </view>
+    </view>
+    <view class="btns">
+      <button size="mini" type="primary" bindtap="approve" data-oid="{{item.openid}}" data-role="{{item.applyRole}}">通过</button>
+      <button size="mini" bindtap="reject" data-oid="{{item.openid}}" data-role="{{item.applyRole}}">拒绝</button>
+    </view>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty">暂无待审核</view>
+</view>

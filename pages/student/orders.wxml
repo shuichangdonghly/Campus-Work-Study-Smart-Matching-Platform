@@ -1,0 +1,93 @@
+<view class="page">
+  <view class="tip-card">
+    <text class="tip-title">现场签到</text>
+    <text class="tip-text">商家生成6位识别码后，在你的工单卡片输入并点击“现场签到”。</text>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty">暂无工单</view>
+  <view wx:for="{{list}}" wx:key="_id" class="card">
+    <text class="title">{{item.job ? item.job.title : '岗位'}}</text>
+    <text class="row">状态：{{item.statusText}}</text>
+    <text class="row">工分：{{item.rewardPoints}}</text>
+    <button
+      size="mini"
+      bindtap="viewDetail"
+      data-id="{{item._id}}"
+    >
+      {{expandedOrderId === item._id ? '收起详情' : '查看详情'}}
+    </button>
+    <view wx:if="{{expandedOrderId === item._id}}" class="detail-card">
+      <view class="detail-row">
+        <text class="detail-label">岗位名称</text>
+        <text class="detail-value">{{item.job ? item.job.title : '—'}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">订单状态</text>
+        <text class="detail-value">{{item.statusText || '—'}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">工分报酬</text>
+        <text class="detail-value">{{item.rewardPoints || 0}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">工作地点</text>
+        <text class="detail-value">{{item.job ? (item.job.location || item.job.locationAddress || '—') : '—'}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">工作时间</text>
+        <text class="detail-value">{{item.job ? (item.job.timeDesc || '—') : '—'}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">签到时间</text>
+        <text class="detail-value">{{item.signTimeText}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">完工说明</text>
+        <text class="detail-value">{{item.submitTextDisplay}}</text>
+      </view>
+      <view class="detail-row">
+        <text class="detail-label">完工时间</text>
+        <text class="detail-value">{{item.submitTimeText}}</text>
+      </view>
+      <view class="detail-row" wx:if="{{item.job && item.job.description}}">
+        <text class="detail-label">岗位说明</text>
+        <text class="detail-value">{{item.job.description}}</text>
+      </view>
+    </view>
+    <input
+      wx:if="{{(item.status === 'ongoing' || item.status === 'pending_settlement' || item.status === 'submitted') && !item.signTime}}"
+      class="code-input"
+      placeholder="输入商家给的6位签到码"
+      data-id="{{item._id}}"
+      bindinput="onSignCodeInput"
+      value="{{signCodeMap[item._id] || ''}}"
+    />
+    <button
+      wx:if="{{(item.status === 'ongoing' || item.status === 'pending_settlement' || item.status === 'submitted') && !item.signTime}}"
+      class="sign-btn"
+      size="mini"
+      bindtap="signIn"
+      data-id="{{item._id}}"
+    >
+      现场签到
+    </button>
+    <button
+      wx:if="{{item.status === 'ongoing' || item.status === 'submitted'}}"
+      class="submit-btn {{!item.signTime ? 'submit-btn-disabled' : ''}}"
+      size="mini"
+      bindtap="submit"
+      data-id="{{item._id}}"
+      disabled="{{!item.signTime}}"
+    >
+      提交完工（照片+文字）
+    </button>
+    <button
+      wx:if="{{item.status === 'pending_settlement' || item.status === 'submitted' || (item.status === 'ongoing' && item.signTime)}}"
+      type="warn"
+      size="mini"
+      bindtap="openAppeal"
+      data-id="{{item._id}}"
+    >
+      投诉 / 申诉
+    </button>
+  </view>
+</view>

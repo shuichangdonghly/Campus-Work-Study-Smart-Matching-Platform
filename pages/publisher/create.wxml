@@ -1,0 +1,78 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">发布兼职</text>
+    <text class="sub">填写岗位信息后提交管理员审核</text>
+  </view>
+
+  <view class="form-card">
+    <view class="field">
+      <text class="label">标题</text>
+      <input class="form-input" placeholder="请输入兼职标题" value="{{title}}" bindinput="onTitle" />
+    </view>
+
+    <view class="field">
+      <text class="label">类型</text>
+      <picker mode="selector" range="{{categoryOptions}}" value="{{categoryIndex}}" bindchange="onCatChange">
+        <view class="form-input picker-input {{category ? '' : 'picker-placeholder'}}">
+          {{category || '请选择工作类型'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="field">
+      <text class="label">地点</text>
+      <view class="form-input location-input" bindtap="onChooseLocation">
+        {{location || '请选择工作地点'}}
+      </view>
+      <view class="location-map-container">
+        <map
+          id="locationMap"
+          longitude="{{mapLongitude}}"
+          latitude="{{mapLatitude}}"
+          scale="15"
+          markers="{{mapMarkers}}"
+          style="width: 100%; height: 200px; border-radius: 8rpx; margin-top: 12rpx;"
+        />
+        
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">时间段</text>
+      <input class="form-input" placeholder="请输入时间段说明" value="{{timeDesc}}" bindinput="onTime" />
+    </view>
+
+    <view class="row-inputs">
+      <view class="col field">
+        <text class="label">每人工分</text>
+        <input class="form-input" placeholder="正整数" type="number" value="{{rewardPoints}}" bindinput="onRp" />
+      </view>
+      <view class="col field">
+        <text class="label">需要人数</text>
+        <input class="form-input" placeholder="正整数" type="number" value="{{needCount}}" bindinput="onNc" />
+      </view>
+    </view>
+
+    <view class="field">
+      <text class="label">工作说明</text>
+      <textarea
+        class="form-textarea"
+        placeholder="请输入具体要求与工作说明"
+        value="{{description}}"
+        bindinput="onDesc"
+        auto-height
+      />
+    </view>
+
+    <view class="field">
+      <text class="label">联系方式（选填）</text>
+      <input class="form-input" placeholder="如微信号/手机号" value="{{contact}}" bindinput="onContact" />
+    </view>
+  </view>
+
+  <text class="hint">发布时将冻结押金（总薪资的150%），当前预计押金：{{requiredDeposit || 0}} 工分。</text>
+  <text class="hint">学生接单时将冻结该单薪资50%押金，完工结算后自动返还。</text>
+  <button type="primary" bindtap="submit">提交审核</button>
+
+  <button bindtap="goJobs" class="back-btn">返回发布列表</button>
+</view>

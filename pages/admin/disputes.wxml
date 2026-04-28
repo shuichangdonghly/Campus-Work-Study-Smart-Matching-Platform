@@ -1,0 +1,83 @@
+<view class="page">
+  <view class="title-wrap">
+    <text class="title-main">⚡ {{headerOrderTitle}} · 纠纷处理</text>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="_id" class="card {{item.focused ? 'card-focused' : ''}}">
+    <view class="order-head">
+      <text class="order-no">订单 {{item.orderId}}</text>
+      <text class="status-tag">{{item.orderStatus}}</text>
+    </view>
+
+    <view class="party-card">
+      <text class="party-line">投诉方：{{item.complainant}}</text>
+      <text class="party-line">被投诉方：{{item.respondent}}</text>
+      <text class="reason-line">纠纷说明：{{item.disputeReason}}</text>
+      <view class="deposit-info" wx:if="{{item.studentDeposit > 0 || item.publisherPerOrderDeposit > 0}}">
+        <text class="deposit-text">学生押金：{{item.studentDeposit || 0}}</text>
+        <text class="deposit-text">发布方押金：{{item.publisherPerOrderDeposit || 0}}</text>
+        <text class="deposit-text total">订单总押金：{{item.totalDeposit || (item.studentDeposit + item.publisherPerOrderDeposit) || 0}}</text>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button
+        class="btn-return"
+        data-id="{{item._id}}"
+        bindtap="onReturnDeposits"
+      >
+        押金原路返回
+      </button>
+      <button class="btn-reject" data-id="{{item._id}}" bindtap="onReject">驳回</button>
+      <button class="btn-judge-link" data-id="{{item._id}}" bindtap="onManualResolve">人工裁定</button>
+    </view>
+
+    <view class="settlement-actions" wx:if="{{item.studentDeposit > 0 && item.publisherPerOrderDeposit > 0}}">
+      <text class="settlement-title">快速分配</text>
+      <view class="preset-row">
+        <view
+          wx:for="{{[
+            { key: 'student_all', label: '全给兼职方' },
+            { key: 'half_half', label: '双方均分' },
+            { key: 'publisher_all', label: '全给发布方' }
+          ]}}"
+          wx:for-item="option"
+          wx:key="key"
+          class="preset-option {{item.selectedOption === option.key ? 'is-selected' : ''}}"
+          data-id="{{item._id}}"
+          data-preset="{{option.key}}"
+          bindtap="onSelectQuickOption"
+        >
+          {{option.label}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!list.length}}" class="empty">暂无待处理纠纷</view>
+
+  <view class="settlement-modal-mask" wx:if="{{settlementModalVisible}}">
+    <view class="settlement-modal">
+      <text class="settlement-modal-title">选择双方分配金额</text>
+      <text class="settlement-modal-sub">总押金：{{settlementTotalDeposit}} 工分</text>
+      <input
+        class="settlement-input"
+        type="number"
+        placeholder="输入给兼职方金额"
+        value="{{settlementToStudent}}"
+        bindinput="onSettlementInputToStudent"
+      />
+      <input
+        class="settlement-input"
+        type="number"
+        placeholder="输入给发布方金额"
+        value="{{settlementToPublisher}}"
+        bindinput="onSettlementInputToPublisher"
+      />
+      <view class="settlement-modal-btns">
+        <button size="mini" bindtap="closeSettlementModal">取消</button>
+        <button size="mini" type="primary" bindtap="submitSettlementModal">确认</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">审核待上架岗位</text>
+    <text class="sub">通过后岗位将进入兼职大厅，拒绝后发布方可修改重提</text>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="_id" class="card">
+    <text class="row strong">{{item.title}}</text>
+    <text class="row">工分/人：{{item.rewardPoints}} × {{item.needCount}} 人</text>
+    <text class="row">发布押金：{{item.publisherDepositTotal || 0}}（总薪资 150%）</text>
+    <view class="btns">
+      <button size="mini" type="primary" bindtap="approve" data-id="{{item._id}}">通过并上架</button>
+      <button size="mini" bindtap="reject" data-id="{{item._id}}">拒绝</button>
+    </view>
+  </view>
+
+  <view wx:if="{{!list.length}}" class="empty">暂无待审核岗位</view>
+</view>

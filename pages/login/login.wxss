@@ -1,0 +1,82 @@
+/* pages/login/login.wxss */
+.login-page {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 24rpx;
+  box-sizing: border-box;
+}
+
+.container1
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 320rpx;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2rpx);
+  border-radius: 24rpx;
+  margin: 16rpx 16rpx 0 16rpx;
+  box-shadow: 0 16rpx 40rpx rgba(15, 23, 42, 0.12);
+}
+
+.title
+{
+  text-align: center;
+  
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2rpx;
+  text-shadow: 0 10rpx 20rpx rgba(0,0,0,0.18);
+  padding: 40rpx 30rpx;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 48rpx;
+  padding: 0 24rpx 24rpx 24rpx;
+}
+
+button{
+  white-space: nowrap;  /*不换行*/
+}
+.butt {
+  font-size: 28rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 18rpx;
+  padding: 24rpx;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 12rpx 30rpx rgba(15, 23, 42, 0.12);
+}
+
+.avatar {
+  width: 24vw;
+  height: 24vw;
+  min-width: 144rpx;
+  min-height: 144rpx;
+  max-width: 220rpx;
+  max-height: 220rpx;
+  border-radius: 50%;
+  margin-bottom: 14rpx;
+  box-shadow: 0 12rpx 30rpx rgba(0,0,0,0.08);
+  overflow: hidden;
+  background: #E2E8F0;
+}
+
+.enter-btn {
+  width: 100%;
+  margin-top: 20rpx;
+}

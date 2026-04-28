@@ -1,0 +1,42 @@
+<view class="page">
+  <view class="top-card">
+    <view class="top-main">
+      <text class="h1">推荐岗位</text>
+    </view>
+    <text class="sub">基于距离、薪资和时间匹配的个性化推荐</text>
+    <view class="loc-input" bindtap="onChooseRecommendLocation">
+      <text class="loc-input-label">当前位置</text>
+      <text class="loc-input-value">{{locationText || '武汉市华中农业大学'}}</text>
+    </view>
+  </view>
+
+  <view class="filter-card">
+    <view class="filter-row">
+      <text class="filter-label">期望工分</text>
+      <input class="filter-input" type="number" value="{{expectedSalary}}" bindinput="onExpectedSalaryInput" placeholder="例如 120" placeholder-class="my-placeholder"/>
+    </view>
+    <view class="filter-row">
+      <text class="filter-label">可工作时段</text>
+      <input class="filter-input" value="{{freeTimeSlotsText}}" bindinput="onFreeTimeSlotsInput" placeholder="例如 周末,晚班" placeholder-class="my-placeholder"/>
+    </view>
+    <button class="filter-btn" size="mini" type="primary" bindtap="onApplyFilters">应用筛选</button>
+  </view>
+
+  <view wx:if="{{!list.length && !loading}}" class="empty">暂无推荐岗位</view>
+  <view wx:for="{{list}}" wx:key="_id" class="card" bindtap="open" data-id="{{item._id}}">
+    <view class="card-head">
+      <text class="title">{{item.title}}</text>
+      <text class="match">匹配度 {{item.matchScore}}%</text>
+    </view>
+    <text class="meta">{{item.category || '其他'}} · {{item.locationName || item.locationText || item.location || '地点待定'}}</text>
+    <text class="meta">工分/人：{{item.salary || item.rewardPoints}} · 距你 {{item.distanceText}}</text>
+    <text class="meta">工作时间：{{item.workTimeText}}</text>
+    <view class="tag-wrap" wx:if="{{item.tagsText}}">
+      <text class="tag">{{item.tagsText}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:if="{{!hasMore && list.length}}" class="loading">没有更多了</view>
+
+</view>

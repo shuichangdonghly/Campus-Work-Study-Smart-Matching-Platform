@@ -1,0 +1,38 @@
+@import './users.wxss';
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16rpx;
+}
+
+.entry-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1rpx solid rgba(15, 23, 42, 0.08);
+  border-radius: 20rpx;
+  padding: 22rpx;
+  box-shadow: 0 14rpx 32rpx rgba(15, 23, 42, 0.06);
+  min-height: 168rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.entry-icon {
+  font-size: 34rpx;
+  margin-bottom: 8rpx;
+}
+
+.entry-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.entry-desc {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #64748b;
+  line-height: 1.4;
+}
+

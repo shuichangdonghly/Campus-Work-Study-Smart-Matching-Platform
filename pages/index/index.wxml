@@ -1,0 +1,25 @@
+<view class="page">
+  <view class="card">
+    <text class="h1">勤工智能匹配</text>
+    <text class="sub">工分结算 · 人工审核 · 平台垫付托管</text>
+  </view>
+
+  <view class="card" wx:if="{{user}}">
+    <text class="row">昵称：{{user.nickName || '—'}}</text>
+    <text class="row">身份：{{user.role === 'admin' ? '管理员' : (user.role === 'publisher' ? '发布者' : (user.role === 'student' ? '兼职者' : '未设置'))}}</text>
+    <text class="row">审核：{{user.verifyStatus === 'approved' ? '已通过' : (user.verifyStatus === 'pending' ? '审核中' : (user.verifyStatus === 'rejected' ? '已驳回' : '待认证'))}}</text>
+    <text class="row" wx:if="{{user.role === 'student'}}">我的工分：{{user.pointsBalance || 0}}</text>
+  </view>
+
+  <view class="actions">
+    <button wx:if="{{user}}" bindtap="goEditProfile">修改个人信息</button>
+    <button wx:if="{{user && user.role !== 'admin'}}" bindtap="goRole">选择身份（学生 / 发布方）</button>
+    <button wx:if="{{user && user.role !== 'admin' && user.verifyStatus === 'none'}}" bindtap="goVerify">提交认证资料</button>
+    <button wx:if="{{user && user.role === 'student' && user.verifyStatus === 'approved'}}" type="primary" bindtap="goJobs">进入兼职者工作台</button>
+    <button wx:if="{{user && user.role === 'student'}}" bindtap="goStudentMine">查看我的信息</button>
+    <button wx:if="{{user && user.role === 'publisher' && user.verifyStatus === 'approved'}}" type="primary" bindtap="goPubCreate">发布工作</button>
+    <button wx:if="{{user && user.role === 'publisher'}}" bindtap="goPubJobs">我的发布</button>
+    <button wx:if="{{user && user.role === 'admin'}}" type="warn" bindtap="goAdminAudit">管理员工作台</button>
+    <button bindtap="refresh">刷新资料</button>
+  </view>
+</view>

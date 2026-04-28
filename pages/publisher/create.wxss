@@ -1,0 +1,118 @@
+.page {
+  padding: 24rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #F6F8FC 0%, #F2F4F8 100%);
+}
+
+.top-card {
+  background: #ffffff;
+  border-radius: 22rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16rpx 40rpx rgba(16, 24, 40, 0.06);
+}
+
+.title-main {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.sub {
+  display: block;
+  font-size: 24rpx;
+  color: #7A869A;
+  margin-top: 6rpx;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: 22rpx;
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+  border: 1rpx solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16rpx 40rpx rgba(16, 24, 40, 0.06);
+}
+
+.label {
+  display: block;
+  font-size: 26rpx;
+  color: #374151;
+  margin-bottom: 8rpx;
+}
+
+.field {
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  border: 1rpx solid rgba(15, 23, 42, 0.10);
+  padding: 18rpx 20rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 84rpx;
+  text-align: left;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+.location-input {
+  color: #222;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  padding: 16rpx;
+  min-height: 40rpx;
+}
+/* 占位符样式 */
+.location-input:empty:before {
+  content: '请选择工作地点';
+  color: #bbb;
+}
+
+.picker-input {
+  display: flex;
+  align-items: center;
+}
+
+.picker-placeholder {
+  color: #9CA3AF;
+}
+
+.row-inputs {
+  display: flex;
+  margin: 0 -8rpx;
+  align-items: flex-start;
+}
+
+.col {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8rpx;
+}
+
+.form-textarea {
+  border: 1rpx solid rgba(15, 23, 42, 0.10);
+  border-radius: 8rpx;
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16rpx 20rpx;
+  min-height: 180rpx;
+  line-height: 1.5;
+  font-size: 28rpx;
+}
+
+.hint {
+  font-size: 24rpx;
+  color: #888;
+  display: block;
+  margin: 16rpx 0 24rpx;
+  line-height: 1.5;
+}
+
+.back-btn {
+  margin-top: 10rpx;
+}

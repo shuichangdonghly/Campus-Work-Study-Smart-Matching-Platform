@@ -1,0 +1,148 @@
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #EDEFF3;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-head {
+  background: #fff;
+  padding: 16rpx 22rpx 14rpx;
+  border-bottom: 1rpx solid rgba(15, 23, 42, 0.08);
+}
+
+.peer-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #111827;
+}
+
+.job-title {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #6B7280;
+}
+
+.msg-list {
+  flex: 1;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.time-divider {
+  width: fit-content;
+  margin: 8rpx auto 16rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background: rgba(107, 114, 128, 0.18);
+  color: #374151;
+  font-size: 22rpx;
+}
+
+.msg-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18rpx;
+  width: 100%;
+}
+
+.msg-row.mine {
+  justify-content: flex-end;
+}
+
+.msg-row.other {
+  justify-content: flex-start;
+}
+
+.avatar {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 14rpx;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mine-avatar {
+  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+}
+
+.other-avatar {
+  background: linear-gradient(135deg, #14B8A6 0%, #06B6D4 100%);
+}
+
+.content {
+  max-width: 72%;
+  min-width: 0;
+}
+
+.msg-row.mine .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 12rpx;
+}
+
+.msg-row.other .content {
+  margin-left: 12rpx;
+}
+
+.bubble {
+  background: #fff;
+  border-radius: 14rpx;
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+  line-height: 1.45;
+  box-shadow: 0 4rpx 14rpx rgba(16, 24, 40, 0.08);
+  word-break: break-all;
+}
+
+.msg-row.mine .bubble {
+  background: #95EC69;
+  color: #111827;
+}
+
+.msg-time {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  color: #6B7280;
+}
+
+.msg-row.mine .msg-time {
+  text-align: right;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  margin-top: 80rpx;
+}
+
+.input-bar {
+  background: #fff;
+  border-top: 1rpx solid rgba(15, 23, 42, 0.08);
+  padding: 14rpx 16rpx calc(14rpx + env(safe-area-inset-bottom));
+  display: flex;
+  gap: 12rpx;
+}
+
+.ipt {
+  flex: 1;
+  border: 1rpx solid rgba(15, 23, 42, 0.12);
+  border-radius: 999rpx;
+  padding: 10rpx 20rpx;
+  background: #fff;
+}
+
+.send-btn {
+  border-radius: 999rpx;
+  min-width: 130rpx;
+}

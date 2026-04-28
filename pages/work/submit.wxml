@@ -1,0 +1,6 @@
+<view class="page">
+  <button class="pick-btn" bindtap="pickImage">选择照片</button>
+  <image wx:if="{{tempPath}}" src="{{tempPath}}" mode="widthFix" class="preview" />
+  <textarea placeholder="文字说明（选填）" value="{{text}}" bindinput="onText" class="ta" />
+  <button type="primary" bindtap="submit" disabled="{{uploading}}">上传并提交</button>
+</view>

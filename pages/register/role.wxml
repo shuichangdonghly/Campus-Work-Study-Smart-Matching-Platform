@@ -1,0 +1,5 @@
+<view class="page">
+  <text class="tip">家长类需求并入「发布方」，由教职工/商户统一发布；认证均为人工审核。</text>
+  <button type="primary" bindtap="pickStudent">我是学生</button>
+  <button type="default" bindtap="pickPublisher">我是发布方（教职工 / 商户）</button>
+</view>

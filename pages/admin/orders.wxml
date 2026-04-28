@@ -1,0 +1,43 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">订单管理</text>
+    <text class="sub">按岗位状态展示：招募中 / 进行中 / 结算中 / 已完成（含申诉筛选）</text>
+  </view>
+
+  <scroll-view scroll-x class="filters" scroll-with-animation>
+    <view
+      wx:for="{{orderFilters}}"
+      wx:key="key"
+      class="chip chip--{{item.tone}} {{orderFilter === item.key ? 'is-on' : ''}}"
+      data-key="{{item.key}}"
+      bindtap="setOrderFilter"
+    >
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <view
+    wx:for="{{orderList}}"
+    wx:key="_id"
+    class="card order-card"
+    bindtap="openDetail"
+    data-orderid="{{item.orderId}}"
+    data-jobid="{{item.jobId}}"
+  >
+    <view class="card-top">
+      <text class="job-title">{{item.jobTitle}}</text>
+      <view class="status-pill phase-{{item.adminPhaseKey}}">{{item.adminPhaseLabel}}</view>
+    </view>
+    <text class="meta">工分 {{item.rewardPoints}} · 发布方 {{item.publisherLabel}}</text>
+    <text class="hint" wx:if="{{item.orderId}}">点击查看对应订单详情</text>
+    <text class="hint" wx:if="{{!item.orderId}}">该岗位暂无关联订单详情</text>
+  </view>
+
+  <view wx:if="{{!orderList.length}}" class="empty">暂无订单</view>
+
+  <view class="admin-tabbar">
+    <view class="tab" bindtap="goAudit">审核中心</view>
+    <view class="tab active">订单管理</view>
+    <view class="tab" bindtap="goMine">我的信息</view>
+  </view>
+</view>

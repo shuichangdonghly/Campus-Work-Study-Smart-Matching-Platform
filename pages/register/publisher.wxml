@@ -1,0 +1,6 @@
+<view class="page">
+  <input class="id" placeholder="工号或商户编号" value="{{workNo}}" bindinput="onWn" />
+  <input class="name" placeholder="单位 / 店铺名称" value="{{unitName}}" bindinput="onUn" />
+  <textarea placeholder="补充说明（选填）" value="{{remark}}" bindinput="onRm" class="ta" />
+  <button type="primary" bindtap="submit">{{isResubmit ? '保存修改并重新提交' : '提交人工审核'}}</button>
+</view>

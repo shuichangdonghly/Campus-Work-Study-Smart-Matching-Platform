@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="card">
+    <text class="title">头像与昵称</text>
+    <image class="avatar" src="{{avatarPreview || defaultAvatar}}" mode="aspectFill" binderror="onAvatarError"></image>
+    <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">选择头像</button>
+    <input
+      class="input"
+      placeholder="请输入昵称"
+      maxlength="30"
+      value="{{nickName}}"
+      bindinput="onNickNameInput"
+    />
+    <textarea
+      class="textarea"
+      placeholder="个人简介（可选）"
+      maxlength="120"
+      value="{{profileBio}}"
+      bindinput="onProfileBioInput"
+    ></textarea>
+    <button type="primary" bindtap="save">保存资料</button>
+  </view>
+
+  <view class="tip">
+    <text>提示：如果未上传头像，将使用默认头像。</text>
+  </view>
+</view>

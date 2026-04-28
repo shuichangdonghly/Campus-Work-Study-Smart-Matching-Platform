@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="balance-card">
+    <text class="balance-label">工分余额</text>
+    <text class="balance-num">{{(user && user.pointsBalance) || 0}}</text>
+  </view>
+
+  <view class="card actions-card">
+    <button class="primary-btn" type="primary" bindtap="goRecharge">充值工分</button>
+    <button class="ghost-btn" bindtap="goWithdraw">提现工分</button>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+{
+  "users_collection_patch": {
+    "location": {
+      "lng": 113.324520,
+      "lat": 23.099994,
+      "updatedAt": "serverDate"
+    },
+    "expectedSalary": 120,
+    "preferenceTags": ["周末", "日结", "家教"],
+    "freeTimeSlots": ["周一晚", "周三晚", "周末全天"]
+  },
+  "jobs_collection_patch": {
+    "location": {
+      "lng": 113.327010,
+      "lat": 23.098780
+    },
+    "salary": 150,
+    "tags": ["日结", "轻体力", "校园内"],
+    "workTime": ["周六上午", "周日上午"]
+  },
+  "notes": [
+    "users.location 与 jobs.location 统一为 { lng, lat } 对象，便于直接计算距离。",
+    "salary 与 expectedSalary 建议统一为每次工作报酬（单位：工分/元按当前系统约定）。",
+    "preferenceTags、tags、freeTimeSlots、workTime 均为字符串数组，推荐控制在 3-10 项。"
+  ]
+}

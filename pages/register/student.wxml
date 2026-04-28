@@ -1,0 +1,7 @@
+<view class="page">
+  <input placeholder="学号" value="{{studentNo}}" bindinput="onSn" />
+  <input placeholder="姓名" value="{{realName}}" bindinput="onName" />
+  <input placeholder="专业" value="{{major}}" bindinput="onMajor" />
+  <input placeholder="年级，如 2023" value="{{grade}}" bindinput="onGrade" />
+  <button type="primary" bindtap="submit">{{isResubmit ? '保存修改并重新提交' : '提交人工审核'}}</button>
+</view>

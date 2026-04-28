@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="top-card">
+    <text class="title-main">管理员工作台</text>
+    <text class="sub">审核发布岗位并决定是否上架</text>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="_id" class="card">
+    <text class="title">{{item.title}}</text>
+    <text class="row">工分/人 {{item.rewardPoints}} × {{item.needCount}} 人</text>
+    <text class="row">发布押金：{{item.publisherDepositTotal || 0}}（总薪资150%）</text>
+    <view class="btns">
+      <button size="mini" type="primary" bindtap="approve" data-id="{{item._id}}">通过并上架</button>
+      <button size="mini" bindtap="reject" data-id="{{item._id}}">拒绝</button>
+    </view>
+  </view>
+  <view wx:if="{{!list.length}}" class="empty">暂无待审核岗位</view>
+
+  <view class="admin-tabbar">
+    <view class="tab active" bindtap="goAudit">审核中心</view>
+    <view class="tab" bindtap="goOrders">兼职订单</view>
+    <view class="tab" bindtap="goMine">我的信息</view>
+  </view>
+</view>

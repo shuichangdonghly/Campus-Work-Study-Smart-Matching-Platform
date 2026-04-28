@@ -1,0 +1,33 @@
+.page {
+  padding: 24rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #F6F8FC 0%, #F2F4F8 100%);
+}
+
+input,
+.ta {
+  border: 1rpx solid rgba(15, 23, 42, 0.10);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.id{
+  height: 100rpx;
+}
+
+.name{
+  height: 100rpx;
+}
+
+.ta {
+  min-height: 160rpx;
+}
+
+button {
+  margin-top: 20rpx;
+}

@@ -1,0 +1,21 @@
+@import './users.wxss';
+
+.row {
+  font-size: 26rpx;
+  color: #475569;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.strong {
+  font-size: 30rpx;
+  color: #0f172a;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.btns {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 18rpx;
+}

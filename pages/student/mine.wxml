@@ -1,0 +1,56 @@
+<view class="page" wx:if="{{user}}">
+  <view class="card profile-card">
+    <image src="{{user.avatarUrl || defaultAvatar}}" class="avatar" mode="aspectFill" binderror="onAvatarError"></image>
+    <text class="name">{{displayName}}</text>
+    <text class="role">
+      {{user.role === 'publisher' ? '发布者' : '兼职者'}} · {{user.verifyStatus === 'approved' ? '已认证' : (user.verifyStatus === 'pending' ? '审核中' : '待认证')}}
+    </text>
+    <text class="edit-link" bindtap="goEditProfile">编辑资料</text>
+  </view>
+
+  <view class="card">
+    <text class="section-title">账户与工分</text>
+    <text class="row">当前余额：{{user.pointsBalance || 0}}</text>
+    <button class="outline-action-btn" bindtap="goWallet">工分账户（充值 / 提现）</button>
+  </view>
+
+  <view class="card">
+    <text class="section-title">认证信息</text>
+    <text class="row">审核状态：{{user.verifyStatus === 'approved' ? '已通过' : (user.verifyStatus === 'pending' ? '审核中' : (user.verifyStatus === 'rejected' ? '已驳回' : '待认证'))}}</text>
+    <view wx:if="{{user.role === 'student' && user.verifyStatus === 'approved' && studentVerify}}">
+      <text class="row">学号：{{studentVerify.studentNo || '未填写'}}</text>
+      <text class="row">姓名：{{studentVerify.realName || '未填写'}}</text>
+      <text class="row">专业：{{studentVerify.major || '未填写'}}</text>
+      <text class="row">年级：{{studentVerify.grade || '未填写'}}</text>
+    </view>
+    <text class="row" wx:if="{{user.role === 'student' && user.verifyStatus === 'pending'}}">已提交学生认证，等待管理员审核</text>
+    <button class="outline-action-btn" wx:if="{{user.role === 'student' && user.verifyStatus !== 'approved' && user.verifyStatus !== 'pending'}}" bindtap="goVerify">
+      去认证
+    </button>
+    <button class="outline-action-btn" wx:if="{{user.role === 'student' && user.verifyStatus === 'pending'}}" bindtap="goVerify">
+      修改申请信息（审核中）
+    </button>
+  </view>
+
+  <view class="card nav-card" bindtap="goOrders">
+    <view class="nav-row">
+      <view class="nav-label-wrap">
+        <text class="nav-label">我的工单</text>
+        <text wx:if="{{activeOrderCount > 0}}" class="nav-badge">{{activeOrderCount}}</text>
+      </view>
+      <text class="nav-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">角色与账号</text>
+    <button class="outline-action-btn" bindtap="switchToPublisher">切换为发布者身份</button>
+    <button class="outline-action-btn" wx:if="{{user.isAdmin}}" bindtap="goAdminCenter">返回管理员工作台</button>
+  </view>
+
+  <view class="student-tabbar">
+    <view class="tab" bindtap="goJobs">兼职</view>
+    <view class="tab" bindtap="goContact">联系</view>
+    <view class="tab active" bindtap="goMine">我的信息</view>
+  </view>
+</view>

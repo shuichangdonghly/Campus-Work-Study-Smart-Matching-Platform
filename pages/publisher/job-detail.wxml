@@ -1,0 +1,66 @@
+<view class="page" wx:if="{{job}}">
+  <view class="card">
+    <text class="title">{{job.title}}</text>
+    <text class="row">状态：{{job.statusText || job.status}}</text>
+    <text class="recruit-tip" wx:if="{{canContinueRecruiting}}">
+      继续招募中（可继续录用），剩余名额：{{remainingSlots}}
+    </text>
+    <button wx:if="{{canCancelJob}}" size="mini" type="warn" bindtap="cancelJob">下架兼职</button>
+  </view>
+
+  <text class="sec">报名列表</text>
+  <view wx:for="{{apps}}" wx:key="_id" class="card">
+    <text class="row">{{item.studentDisplayName}} · {{item.statusText}}</text>
+    <view class="detail-box" wx:if="{{item.studentDetails && item.studentDetails.length}}">
+      <view wx:for="{{item.studentDetails}}" wx:key="label" class="detail-row">
+        <text class="detail-label">{{item.label}}：</text>
+        <text class="detail-value">{{item.value}}</text>
+      </view>
+    </view>
+    <button
+      wx:if="{{item.status === 'applied' && (job.status === 'open' || job.status === 'approved' || job.status === 'ongoing')}}"
+      size="mini"
+      type="primary"
+      bindtap="accept"
+      data-id="{{item._id}}"
+    >
+      录用
+    </button>
+  </view>
+
+  <text class="sec">工单与完工确认</text>
+  <view wx:for="{{orders}}" wx:key="_id" class="card">
+    <text class="row">{{item.studentDisplayName}} · {{item.statusText}}</text>
+    <text class="row">完工时间：{{item.submitTimeDisplay}}</text>
+    <text class="row" wx:if="{{item.submitTextDisplay}}">说明：{{item.submitTextDisplay}}</text>
+    <image wx:if="{{item.submitPhotoUrl}}" src="{{item.submitPhotoUrl}}" mode="widthFix" class="pic" />
+    <view class="btn-row">
+      <button
+        wx:if="{{(item.status === 'ongoing' || item.status === 'pending_settlement' || item.status === 'submitted') && !item.signTime}}"
+        type="primary"
+        size="mini"
+        bindtap="generateSignCode"
+        data-id="{{item._id}}"
+      >
+        生成签到码
+      </button>
+      <button
+        wx:if="{{item.status === 'ongoing' || item.status === 'pending_settlement' || item.status === 'submitted'}}"
+        size="mini"
+        bindtap="openComplaintMenu"
+        data-id="{{item._id}}"
+      >
+        投诉 / 申诉
+      </button>
+    </view>
+    <button
+      wx:if="{{item.status === 'pending_settlement' || item.status === 'submitted'}}"
+      type="warn"
+      size="mini"
+      bindtap="confirm"
+      data-id="{{item._id}}"
+    >
+      确认完工并发放工分
+    </button>
+  </view>
+</view>

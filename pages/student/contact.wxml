@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="chat-header">
+    <text class="h1">在线联系</text>
+    <text class="sub">消息</text>
+  </view>
+
+  <view wx:if="{{!list.length}}" class="empty">暂无消息会话</view>
+  <view
+    wx:for="{{list}}"
+    wx:key="jobId"
+    class="chat-item"
+    bindtap="openChat"
+    data-jobid="{{item.jobId}}"
+    data-peeropenid="{{item.peerOpenid}}"
+  >
+    <view class="avatar">{{item.avatarText}}</view>
+    <view class="chat-main">
+      <view class="chat-top">
+        <text class="name">{{item.peerName}}</text>
+        <text class="time">{{item.timeText}}</text>
+      </view>
+      <text class="job">岗位：{{item.jobTitle}}</text>
+      <text class="preview">{{item.preview}}</text>
+    </view>
+  </view>
+
+  <view class="student-tabbar">
+    <view class="tab" bindtap="goJobs">兼职</view>
+    <view class="tab active" bindtap="goContact">联系</view>
+    <view class="tab" bindtap="goMine">我的信息</view>
+  </view>
+</view>

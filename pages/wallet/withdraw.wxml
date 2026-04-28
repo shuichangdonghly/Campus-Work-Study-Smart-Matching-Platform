@@ -1,0 +1,29 @@
+<view class="page">
+  <view class="card" wx:if="{{user}}">
+    <text class="title">提现工分（模拟到账）</text>
+    <text class="row">当前工分：{{user.pointsBalance || 0}}</text>
+    <text class="hint">流程：选择金额 -> 点击提现 -> 提现完成 -> 工分减少</text>
+  </view>
+
+  <view class="card">
+    <text class="section-title">选择提现金额</text>
+    <view class="preset-list">
+      <view
+        wx:for="{{presetAmounts}}"
+        wx:key="*this"
+        class="preset-item {{!useCustom && selectedAmount === item ? 'active' : ''}}"
+        data-amount="{{item}}"
+        bindtap="selectPreset"
+      >
+        {{item}} 工分
+      </view>
+    </view>
+    <input class="amount-input" type="number" placeholder="或输入自定义金额" value="{{customAmount}}" bindinput="onCustomInput" />
+    <button type="primary" bindtap="submitWithdraw">确认提现</button>
+  </view>
+
+  <view class="card" wx:if="{{logs.length}}">
+    <text class="section-title">最近提现记录</text>
+    <text class="row" wx:for="{{logs}}" wx:key="_id">-{{item.amount}} 工分</text>
+  </view>
+</view>

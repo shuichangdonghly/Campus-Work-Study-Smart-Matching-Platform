@@ -1,0 +1,150 @@
+.page {
+  padding: 24rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #F6F8FC 0%, #F2F4F8 100%);
+  padding-bottom: 150rpx;
+}
+
+.top-card {
+  background: #ffffff;
+  padding: 24rpx;
+  border-radius: 22rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16rpx 40rpx rgba(16, 24, 40, 0.06);
+}
+
+.title-main {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.sub {
+  display: block;
+  font-size: 24rpx;
+  color: #7A869A;
+  margin-top: 6rpx;
+}
+
+.card {
+  background: #ffffff;
+  padding: 24rpx;
+  border-radius: 22rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 16rpx 40rpx rgba(16, 24, 40, 0.06);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 30rpx;
+  flex: 1;
+}
+
+.status {
+  flex-shrink: 0;
+  font-size: 22rpx;
+  line-height: 1;
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: #E5E7EB;
+  color: #4B5563;
+}
+
+.status-pending_review {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.status-open,
+.status-approved {
+  background: #DCFCE7;
+  color: #166534;
+}
+
+.status-ongoing {
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.status-closed {
+  background: #E5E7EB;
+  color: #374151;
+}
+
+.status-rejected {
+  background: #FEE2E2;
+  color: #991B1B;
+}
+
+.row {
+  font-size: 26rpx;
+  color: #666;
+  display: block;
+  margin-top: 6rpx;
+  line-height: 1.5;
+}
+
+.reject {
+  color: #B91C1C;
+}
+
+.empty {
+  color: #888;
+  text-align: center;
+  margin-top: 80rpx;
+}
+
+.fab {
+  position: fixed;
+  right: 28rpx;
+  bottom: calc(120rpx + env(safe-area-inset-bottom));
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5B7CFF 0%, #8B5CF6 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  line-height: 1;
+  box-shadow: 0 16rpx 32rpx rgba(91, 124, 255, 0.35);
+}
+
+.fab-disabled {
+  background: #C5CAD3;
+  box-shadow: 0 10rpx 20rpx rgba(120, 130, 150, 0.2);
+}
+
+.publisher-tabbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+  background: #ffffff;
+  display: flex;
+  border-top: 1rpx solid rgba(15, 23, 42, 0.08);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #7A869A;
+}
+
+.tab.active {
+  color: #4F46E5;
+  font-weight: 600;
+}

@@ -1,0 +1,70 @@
+<view class="page">
+  <view class="nav-wrap" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar" style="height: {{navBarHeight}}px;">
+      <text class="nav-action" bindtap="onBack">←</text>
+      <text class="nav-title">选择位置</text>
+      <text class="nav-action nav-save" bindtap="onSave">确定</text>
+    </view>
+  </view>
+
+  <view class="banner">
+    <view class="banner-left">
+      <text class="banner-icon">📍</text>
+      <text class="banner-name">{{locationBannerName}}</text>
+    </view>
+    <text class="banner-relocate" bindtap="onRelocate">{{loading ? '定位中' : '重新定位'}}</text>
+  </view>
+
+  <scroll-view class="content" scroll-y>
+    <view class="map-placeholder">
+      <map
+        id="pickerMap"
+        class="real-map"
+        longitude="{{mapCenterLng}}"
+        latitude="{{mapCenterLat}}"
+        scale="{{mapScale}}"
+        include-points="{{mapIncludePoints}}"
+        markers="{{mapMarkers}}"
+        show-location="{{showUserLocation}}"
+        bindregionchange="onMapRegionChange"
+      />
+      <view class="map-mask">拖动地图微调位置</view>
+    </view>
+
+    <view class="map-meta">
+      <text class="meta-title">{{mapCenterName}}</text>
+      <text class="meta-address">{{mapCenterAddress}}</text>
+      <text class="meta-coord">({{mapCenterLat}}, {{mapCenterLng}})</text>
+    </view>
+
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="请输入地址或地标名称"
+        value="{{keyword}}"
+        bindinput="onKeywordInput"
+      />
+    </view>
+
+    <view wx:if="{{suggestions.length}}" class="suggestion-list">
+      <view
+        wx:for="{{suggestions}}"
+        wx:key="id"
+        class="suggestion-item"
+        data-index="{{index}}"
+        bindtap="onTapSuggestion"
+      >
+        <text class="item-dot">●</text>
+        <view class="item-main">
+          <text class="item-title">{{item.title}}</text>
+          <text class="item-sub">{{item.address}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="footer">
+    <button class="confirm-btn" bindtap="confirmSelection">确认选择</button>
+  </view>
+</view>

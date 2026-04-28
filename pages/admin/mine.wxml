@@ -1,0 +1,22 @@
+<view class="page" wx:if="{{user}}">
+  <view class="card profile-card">
+    <image src="{{user.avatarUrl || defaultAvatar}}" class="avatar" mode="aspectFill" binderror="onAvatarError"></image>
+    <text class="name">{{displayName}}</text>
+    <text class="role">管理员 · 已授权</text>
+  </view>
+
+  <view class="card">
+    <text class="row">OpenID：{{user.openid}}</text>
+    <text class="row">当前角色：{{user.role === 'admin' ? '管理员' : (user.role === 'publisher' ? '发布者' : '兼职者')}}</text>
+    <text class="row">审核状态：{{user.verifyStatus === 'approved' ? '已通过' : (user.verifyStatus === 'pending' ? '审核中' : (user.verifyStatus === 'rejected' ? '已驳回' : '待认证'))}}</text>
+    <button class="outline-action-btn" bindtap="goEditProfile">修改个人信息</button>
+    <button class="outline-action-btn" bindtap="switchToStudent">切换到学生身份</button>
+    <button class="outline-action-btn" bindtap="switchToPublisher">切换到发布者身份</button>
+  </view>
+
+  <view class="admin-tabbar">
+    <view class="tab" bindtap="goAudit">审核中心</view>
+    <view class="tab" bindtap="goOrders">订单管理</view>
+    <view class="tab active" bindtap="goMine">我的信息</view>
+  </view>
+</view>

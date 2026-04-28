@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="chat-head">
+    <text class="peer-name">{{peerName}}</text>
+    <text class="job-title">{{jobTitle}}</text>
+  </view>
+
+  <scroll-view class="msg-list" scroll-y="true" scroll-with-animation="true">
+    <view wx:for="{{list}}" wx:key="_id">
+      <view wx:if="{{item.showDivider}}" class="time-divider">{{item.dividerText}}</view>
+      <view class="msg-row {{item.isMine ? 'mine' : 'other'}}">
+        <block wx:if="{{item.isMine}}">
+          <view class="content">
+            <view class="bubble">{{item.text}}</view>
+            <text class="msg-time">{{item.timeText}}</text>
+          </view>
+          <view class="avatar mine-avatar">{{meAvatarText}}</view>
+        </block>
+        <block wx:else>
+          <view class="avatar other-avatar">{{peerAvatarText}}</view>
+          <view class="content">
+            <view class="bubble">{{item.text}}</view>
+            <text class="msg-time">{{item.timeText}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view wx:if="{{!list.length}}" class="empty">还没有消息，发一条开始沟通吧</view>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input class="ipt" value="{{text}}" bindinput="onInput" placeholder="输入你想说的话" />
+    <button class="send-btn" size="mini" type="primary" loading="{{sending}}" bindtap="send">{{sending ? '发送中' : '发送'}}</button>
+  </view>
+</view>

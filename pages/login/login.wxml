@@ -1,0 +1,24 @@
+<!-- pages/login/login.wxml -->
+<view class="login-page" style="background-image: linear-gradient(160deg, rgba(91,124,255,0.55), rgba(34,197,94,0.4)), url('{{loginBg}}');">
+  <view class="container1">
+    <text class="title">
+      校内勤工俭学智能匹配系统
+    </text>
+  </view>
+
+  <view class="container2">
+    <button wx:if="{{!hasUserInfo}}" type="primary" bindtap="getUserProfile">
+      <text class="butt">获取头像昵称并登录</text>
+    </button>
+
+    <view wx:else class="user-info">
+      <image src="{{loginAvatar}}" mode="aspectFill" class="avatar" binderror="onLoginAvatarError"></image>
+      <text>{{userInfo.nickName || ''}}</text>
+      <text wx:if="{{serverUser}}">
+        身份：{{serverUser.role === 'admin' ? '管理员' : (serverUser.role === 'publisher' ? '发布者' : (serverUser.role === 'student' ? '兼职者' : '未设置'))}}
+        审核：{{serverUser.verifyStatus === 'approved' ? '已通过' : (serverUser.verifyStatus === 'pending' ? '审核中' : (serverUser.verifyStatus === 'rejected' ? '已驳回' : '待认证'))}}
+      </text>
+      <button type="default" bindtap="enterHome" class="enter-btn">登录</button>
+    </view>
+  </view>
+</view>

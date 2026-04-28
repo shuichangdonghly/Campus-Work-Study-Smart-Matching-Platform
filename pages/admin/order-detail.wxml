@@ -1,0 +1,66 @@
+<view class="page" wx:if="{{!loading}}">
+  <view class="card head-card" wx:if="{{job}}">
+    <view class="head-row">
+      <text class="job-title">{{job.title}}</text>
+      <view class="status-pill phase-{{adminPhaseKey}}">{{adminPhaseLabel}}</view>
+    </view>
+    <text class="row">工分报酬：{{(order && order.rewardPoints) || job.rewardPoints || 0}}</text>
+    <text class="row" wx:if="{{job.location}}">地点：{{job.location}}</text>
+    <text class="row" wx:if="{{job.timeDesc}}">时间：{{job.timeDesc}}</text>
+    <button
+      wx:if="{{canAdminCancelTrade}}"
+      size="mini"
+      type="warn"
+      class="{{cancelTradeDisabled ? 'cancel-btn-disabled' : ''}}"
+      bindtap="cancelTradeByAdmin"
+      disabled="{{cancelTradeDisabled}}"
+    >
+      {{cancelTradeDisabled ? '订单已取消' : '一键取消交易'}}
+    </button>
+  </view>
+
+  <view class="card">
+    <text class="sec">参与方</text>
+    <text class="row">兼职方：{{studentLabel}}</text>
+    <text class="row">发布方：{{publisherLabel}}</text>
+  </view>
+
+  <view class="card" wx:if="{{order && (order.submitText || order.submitPhotoFileId)}}">
+    <text class="sec">完工提交</text>
+    <text class="row">完工时间：{{order.submitTimeText || '未提交'}}</text>
+    <text class="row" wx:if="{{order.submitText}}">说明：{{order.submitText}}</text>
+    <image wx:if="{{order.submitPhotoUrl}}" class="proof-img" src="{{order.submitPhotoUrl}}" mode="widthFix" />
+  </view>
+
+  <view class="card">
+    <text class="sec">投诉与纠纷记录</text>
+    <view wx:if="{{!disputes.length}}" class="muted">暂无记录</view>
+    <view wx:for="{{disputes}}" wx:key="_id" class="dispute-item">
+      <view class="dispute-head">
+        <text class="tag-status">{{item.statusText}}</text>
+      </view>
+      <text class="row">说明：{{item.reason}}</text>
+      <image wx:if="{{item.disputePhotoUrl}}" class="proof-img" src="{{item.disputePhotoUrl}}" mode="widthFix" />
+      <text class="row muted" wx:if="{{item.adminNote}}">管理员备注：{{item.adminNote}}</text>
+      <button
+        wx:if="{{item.status === 'pending'}}"
+        size="mini"
+        type="primary"
+        class="handle-btn"
+        bindtap="goHandleDispute"
+        data-disputeid="{{item._id}}"
+      >
+        去处理
+      </button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{order && order.noShowReason}}">
+    <text class="sec">爽约处理说明</text>
+    <text class="row">{{order.noShowReason}}</text>
+  </view>
+</view>
+
+<view class="page loading-wrap" wx:if="{{loading}}">
+  <text class="muted">加载中…</text>
+</view>
